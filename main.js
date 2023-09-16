@@ -1,14 +1,40 @@
 console.log("Test")
 
 class LinkedList{
-    constructor(Node) {
-
+    constructor(head = null) {
+        this.head = head;
     }
-    append(value) {}
+
+    append(value) {
+        if (!this.head) {
+            this.head = new myNode(value);
+            return this
+        }
+        let tail = this.tail();
+        tail.nextNode = new myNode(value);
+        return tail;
+    }
     prepend(value) {}
-    size() {}
-    head() {}
-    tail() {}
+    size() {
+        let count = 0;
+        let pointer = this.head;
+        while (pointer !== null) {
+            count++;
+            pointer = pointer.nextNode;
+        }
+    }
+
+    head() { return this.head; }
+
+    tail() {
+        if(!this.head) return null;
+        let tail = this.head;
+        while (tail.nextNode !== null) {
+            tail = tail.nextNode;
+        }
+        return tail;
+    }
+
     at(index) {}
     pop() {}
     contains(value) {}
@@ -18,12 +44,18 @@ class LinkedList{
 }
 
 class myNode {
-    constructor(value, nextNode) {
+    constructor(value = null, nextNode = null)  {
         this.value = value;
         this.nextNode = nextNode;
     }
 }
 
-let misa = new myNode("Misa", null);
+const list  = new LinkedList();
 
-console.log(misa.nextNode)
+list.append("Greg");
+list.append("Misa")
+
+console.log(list)
+
+
+
