@@ -14,7 +14,15 @@ class LinkedList{
         tail.nextNode = new myNode(value);
         return tail;
     }
-    prepend(value) {}
+    prepend(value) {
+        if(!this.head) {
+            this.head = new myNode(value);
+            return this;
+        }
+        let head = this.head();
+        head.nextNode = new myNode(value);
+    }
+
     size() {
         let count = 0;
         let pointer = this.head;
@@ -22,6 +30,7 @@ class LinkedList{
             count++;
             pointer = pointer.nextNode;
         }
+        return count;
     }
 
     head() { return this.head; }
@@ -56,6 +65,7 @@ list.append("Greg");
 list.append("Misa")
 
 console.log(list)
+console.log(list.size());
 
 
 
