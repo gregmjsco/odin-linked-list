@@ -1,26 +1,38 @@
 console.log("Test")
 
 class LinkedList{
-    constructor(head = null) {
-        this.head = head;
+    constructor() {
+        this.head = null;
+        this.size = 0;
+        
     }
 
     append(value) {
+        let node = new Node(value);
+        let current;
+
         if (!this.head) {
-            this.head = new myNode(value);
+            this.head = node;
             return this
+        } else {
+            current = this.head;
+
+            while(current.next) {
+                current = current.next;
+            }
+
+            current.next = node;
         }
-        let tail = this.tail();
-        tail.nextNode = new myNode(value);
-        return tail;
+        this.size++;
     }
+
     prepend(value) {
         if(!this.head) {
             this.head = new myNode(value);
             return this;
         }
-        let head = this.head();
-        head.nextNode = new myNode(value);
+        
+        this.head = new myNode(value);
     }
 
     size() {
